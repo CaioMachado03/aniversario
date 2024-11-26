@@ -1,0 +1,62 @@
+/* Estilo do botão */
+.motivo-button {
+    width: calc(10% - 10px); /* 10% da largura da tela, subtraído o espaço da margem */
+    padding: 15px; /* Espaçamento interno dentro do botão */
+    margin: 3px; /* Espaço entre os botões */
+    font-size: 16px; /* Tamanho da fonte */
+    cursor: pointer;
+    background-color: #008CBA; /* Cor de fundo */
+    color: white; /* Cor do texto */
+    border: none;
+    border-radius: 10px; /* Bordas arredondadas */
+    box-sizing: border-box; /* Inclui o padding e a borda na largura e altura do elemento */
+}
+
+/* Contêiner que envolve todos os botões, garantindo que fiquem organizados em múltiplas linhas */
+.container {
+    display: flex;
+    flex-wrap: wrap; /* Permite que os botões "quebrem" para a próxima linha */
+    justify-content: space-evenly; /* Distribui os botões igualmente */
+    gap: 10px; /* Espaçamento entre as linhas e colunas */
+}
+
+/* Garantir que a página ocupe toda a largura disponível */
+body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+
+/* Contêiner para cada item de motivo e mensagem, alinhando o botão e a mensagem */
+.motivo-item {
+    display: flex;
+    flex-direction: column; /* Empilha o botão e a mensagem */
+    align-items: center; /* Centraliza o conteúdo */
+    width: calc(10% - 10px); /* Garante que o tamanho do motivo seja igual ao do botão */
+}
+
+/* Estilo da mensagem */
+.motivo-message {
+    display: none; /* Esconde a mensagem inicialmente */
+    background-color: #f7f7f7; /* Cor de fundo */
+    color: black; /* Cor do texto */
+    padding: 20px; /* Espaçamento interno */
+    margin-top: 10px; /* Espaço entre o botão e a mensagem */
+    font-size: 18px; /* Tamanho da fonte */
+    border-radius: 8px; /* Bordas arredondadas */
+    width: 100%; /* A largura vai acompanhar a largura do botão */
+    box-sizing: border-box; /* Inclui o padding e a borda na largura */
+    text-align: center; /* Centraliza o texto */
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Sombra suave */
+}
+
+/* Mostrar a mensagem quando for necessária */
+.motivo-message.show {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+
+   

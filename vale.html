@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vale Presente!!!</title>
+    <link rel="stylesheet" href="vale.css">
+</head>
+<body>
+    <h1>Vamos lá! Para ganhar seu vale presente precisa acertar 80% das perguntas, boa sorte!</h1>
+    <div id="quizContainer"></div>
+
+    <div id="navigationButtons">
+        <button id="prevButton" onclick="mostrarAnterior()">Voltar</button>
+        <button id="nextButton" onclick="mostrarProxima()">Próxima</button>
+    </div>
+
+    <div id="finalMessage" style="display: none;">
+        <h2>Parabéns! Você finalizou o quiz.</h2>
+        <button onclick="reiniciarQuiz()">Tentar Novamente</button>
+    </div>
+
+    <script>
+        const perguntas = [
+            {
+                pergunta: "Qual é nossa primeira tradição?",
+                respostas: [
+                    "Ir ao shopping",
+                    "A forma de despedir",
+                    "As meias no shopping",      
+                    "Sorvetinho no domingo"
+                ],
+                correta: "A forma de despedir"
+            },
+            {
+                pergunta: "Quantos aniversários (contando com esse) trocamos presente?",
+                respostas: [
+                    "03",      
+                    "04",
+                    "05",
+                    "06"
+                ],
+                correta: "06"
+            },
+
+            {
+        pergunta: "Qual foi o primeiro presente que eu te dei?",
+        respostas: [
+            "Uma blusinha",           
+            "Um livro",
+            "Uma cesta",
+            "Bicho de pelúcia"
+        ],
+        correta: "Uma cesta"
+    },
+    {
+        pergunta: 'Quem falou "Eu te amo" primeiro?',
+        respostas: [
+            "Você",
+            "Eu",   
+            "Juntos",
+            "Ninguém falou antes de começarmos a namorar"
+        ],
+        correta: "Eu"
+    },
+    {
+        pergunta: "Como se chama o primeiro bicho de pelúcia que eu dei para você, e qual animal é?",
+        respostas: [
+            "Tararuga, Tartaruga",
+            "Fofinho, Urso",      
+            "Dengo, Urso",
+            "Pingo, Urso"
+        ],
+        correta: "Dengo, Urso"
+    },
+    {
+        pergunta: "Qual era o time da camisa que eu usei quando entreguei o seu primeiro presente de aniversário?",
+        respostas: [
+            "Palmeiras",
+            "Barcelona",
+            "Atlético Mineiro",  
+            "Manchester City"
+        ],
+        correta: "Manchester City"
+    },
+    {
+        pergunta: "Qual foi a primeira camisa de time que você me deu?",
+        respostas: [
+            "Barcelona",            
+            "Palmeiras",
+            "Manchester City",
+            "Barcelona (camisa rosa)"
+        ],
+        correta: "Barcelona"
+    },
+    {
+        pergunta: "Qual nossa data de aniversário de namoro?",
+        respostas: [
+            "14/04/2020",           
+            "14/03/2021",
+            "14/03/2020",
+            "14/03/2019"
+        ],
+        correta: "14/03/2020"
+    },
+    {
+        pergunta: "Onde a gente se encontrava antes de namorar?",
+        respostas: [
+            "Na praça",
+            "Na quadra do Pet",
+            "Na porta da sua casa",      
+            "No quiosque"
+        ],
+        correta: "No quiosque"
+    },
+    {
+        pergunta: "Quanto tempo você ficou sem falar comigo por um motivo que eu desconheço até hoje?",
+        respostas: [
+            "03 Dias",      
+            "04 Dias",
+            "08 Dias",
+            "07 Dias"
+        ],
+        correta: "07 Dias"
+    },
+    {
+        pergunta: "Qual foi a primeira data comemorativa que fui em sua casa?",
+        respostas: [
+            "Ano Novo",           
+            "Páscoa",
+            "Natal",
+            "07 de Setembro"
+        ],
+        correta: "Natal"
+    },
+    {
+        pergunta: "Onde eu entreguei o seu primeiro presente de aniversário?",
+        respostas: [
+            "Na sua casa",
+            "No quadra",   
+            "Na escola",
+            "No serviço"
+        ],
+        correta: "No serviço"
+    },
+    {
+        pergunta: "Quantos anos você fez quando eu te dei o relógio de presente?",
+        respostas: [
+            "15",
+            "16",
+            "17", 
+            "14"
+        ],
+        correta: "15"
+    },
+    {
+        pergunta: "Qual chocolate eu comprei para seu aniversário e você não gostava?",
+        respostas: [
+            "Chokito",            
+            "Bis",
+            "Talento Dark",
+            "Sonho de Valsa"
+        ],
+        correta: "Bis"
+    },
+    {
+        pergunta: "Qual lugar comemos na primeira vez que fomos ao shopping sozinhos?",
+        respostas: [
+            "Sr na Brasa",           
+            "Burgue King",
+            "Mec Donalts",
+            "Não comemos"
+        ],
+        correta: "Sr na Brasa"
+    },
+    {
+        pergunta: "Quantas vezes já fomos no shopping sozinhos?",
+        respostas: [
+            "07",
+            "04",
+            "05",      
+            "06"
+        ],
+        correta: "07"
+    },
+    {
+        pergunta: "Quantas tradições temos no total?",
+        respostas: [
+            "03",      
+            "04",
+            "05",
+            "06"
+        ],
+        correta: "05"
+    },
+    {
+        pergunta: "Marque a alternativa que contém as tradições na ordem correta de sua criação",
+        respostas: [
+            "Forma de cumprimentar ao ir embora, shopping, meias e mostrinho, sorvetinho",           
+            "Forma de cumprimentar ao ir embora, mostrinho, festa surpresa de aniversário, meias e sorvetinho",
+            "Forma de cumprimentar ao ir embora, festa surpresa de aniversário, shopping, meias e mostrinhos",
+            "Sorvetinho, mostrinhos, forma de cumprimentar ao ir embora, meias e shopping"
+        ],
+        correta: "Forma de cumprimentar ao ir embora, festa surpresa de aniversário, shopping, meias e mostrinhos"
+    },
+    {
+        pergunta: "Qual foi as blusas de times que comprei para você?",
+        respostas: [
+            "PSG, Roma, Barcelona",
+            "PSG, São Paulo, Barcelona",   
+            "PSG, São Paulo, Roma",
+            "São Paulo, Roma, Barcelona"
+        ],
+        correta: "PSG, Roma, Barcelona"
+    },
+    {
+        pergunta: "Qual foi o primeiro apelido 'carinhoso' que te dei?",
+        respostas: [
+            "Tartaruguinha",
+            "Pinscher Raivoso",      
+            "Toquinho de amarrar bode",
+            "Pitica"
+        ],
+        correta: "Pinscher Raivoso"
+    },
+    {
+        pergunta: "Onde íamos ir conversar depois de já ter começado a namorar?",
+        respostas: [
+            "Quadra do parquinho",
+            "Loteamento",
+            "Pet",  
+            "Na frente da sua casa"
+        ],
+        correta: "Loteamento"
+    },
+    {
+        pergunta: "Qual motivo fez você ir na minha casa a primeira vez?",
+        respostas: [
+            "Me ver (Saudades)",            
+            "Me entregar um presente",
+            "Ficar comigo, porque não queria comer",
+            "Você não foi na minha casa"
+        ],
+        correta: "Ficar comigo, porque não queria comer"
+    },
+    {
+        pergunta: "Qual a soma dos meses da data do seu aniversário, do meu e do nosso aniversário de namoro?",
+        respostas: [
+            "23",           
+            "22",
+            "24",
+            "26"
+        ],
+        correta: "26"
+    },
+    {
+        pergunta: "Qual quiosque a gente ficava no começo?",
+        respostas: [
+            "No primeiro, perto do bar",
+            "No segundo, perto da esquina",
+            "No terceiro perto do parquinho",      
+            "Nenhuma das anteriores"
+        ],
+        correta: "No segundo, perto da esquina"
+    },
+    {
+        pergunta: "Qual nossa mesa favorita na Radikal Lanches?",
+        respostas: [
+            "A que fica perto do poste",      
+            "A mesa do fundo do lado de dentro",
+            "A mesa perto da porta do lado de fora",
+            "A mesa perto da porta do lado de dentro"
+        ],
+        correta: "A mesa perto da porta do lado de fora"
+    },
+    {
+        pergunta: "Quais são as minhas cores favoritas?",
+        respostas: [
+            "Azul, Vermelho",           
+            "Verde, Azul",
+            "Vermelho, Verde",
+            "Preto, Verde"
+        ],
+        correta: "Preto, Verde"
+    },
+    {
+        pergunta: "Onde foi o nosso primeiro beijo?",
+        respostas: [
+            "Na escola",
+            "Na praça",   
+            "Na esquina",
+            "No Parquinho"
+        ],
+        correta: "Na esquina"
+    },
+    {
+        pergunta: "Qual música me faz lembrar de você?",
+        respostas: [
+            "We Wanna Be Yours",
+            "Escrito nas Estrelas",    
+            "É o Amor",
+            "Músicas do XX em geral"
+        ],
+        correta: "We Wanna Be Yours"
+    },
+    
+{
+    pergunta: "Qual é o filme que mais assistimos juntos?",
+    respostas: [
+        "Uma Noite de Crime",
+        "Shrek",
+        "Transformers", 
+        "Rambo"
+    ],
+    correta: "Shrek"
+},
+{
+    pergunta: "Qual é o esporte favorito da aniversariante?",
+    respostas: [
+        "Futsal",            
+        "Vôlei",
+        "Basquete",
+        "Handball"
+    ],
+    correta: "Futsal"
+},
+            // Adicione as outras perguntas aqui
+        ];
+
+        let indiceAtual = 0;
+        const respostasUsuario = [];
+
+        // Função para gerar uma pergunta
+        function gerarPergunta(indice) {
+            const quizContainer = document.getElementById('quizContainer');
+            quizContainer.innerHTML = ''; // Limpar conteúdo anterior
+
+            const perguntaObj = perguntas[indice];
+            const perguntaElement = document.createElement('p');
+            perguntaElement.innerHTML = `<strong>Pergunta ${indice + 1}:</strong> ${perguntaObj.pergunta}`;
+            quizContainer.appendChild(perguntaElement);
+
+            perguntaObj.respostas.forEach(resposta => {
+                const inputElement = document.createElement('input');
+                inputElement.type = "radio";
+                inputElement.name = `pergunta${indice}`;
+                inputElement.value = resposta;
+
+                const labelElement = document.createElement('label');
+                labelElement.innerText = resposta;
+                labelElement.appendChild(inputElement);
+
+                quizContainer.appendChild(labelElement);
+                quizContainer.appendChild(document.createElement('br'));
+            });
+
+            // Exibindo ou ocultando os botões de navegação
+            const prevButton = document.getElementById('prevButton');
+            const nextButton = document.getElementById('nextButton');
+
+            prevButton.style.display = indice === 0 ? 'none' : 'inline-block';
+            nextButton.innerText = indice === perguntas.length - 1 ? 'Finalizar' : 'Próxima';
+        }
+
+        // Função para mostrar a pergunta anterior
+        function mostrarAnterior() {
+            salvarResposta();
+            if (indiceAtual > 0) {
+                indiceAtual--;
+                gerarPergunta(indiceAtual);
+            }
+        }
+
+        // Função para mostrar a próxima pergunta ou finalizar o quiz
+        function mostrarProxima() {
+            salvarResposta();
+            if (indiceAtual < perguntas.length - 1) {
+                indiceAtual++;
+                gerarPergunta(indiceAtual);
+            } else {
+                finalizarQuiz();
+            }
+        }
+
+        // Função para salvar a resposta selecionada
+        function salvarResposta() {
+            const respostaSelecionada = document.querySelector(`input[name="pergunta${indiceAtual}"]:checked`);
+            if (respostaSelecionada) {
+                respostasUsuario[indiceAtual] = respostaSelecionada.value;
+            }
+        }
+
+        // Função para finalizar o quiz
+        function finalizarQuiz() {
+            salvarResposta();
+            const acertos = respostasUsuario.filter((resposta, i) => resposta === perguntas[i].correta).length;
+            const porcentagem = (acertos / perguntas.length) * 100;
+
+            const finalMessage = document.getElementById("finalMessage");
+            finalMessage.style.display = "block";
+            finalMessage.innerHTML = `
+                <h2>${porcentagem >= 80 ? "Parabéns! Você ganhou um vale Monster!" : "Você acertou menos de 80%. Tente novamente!"}</h2>
+                <button onclick="reiniciarQuiz()">Tentar Novamente</button>
+            `;
+
+            document.getElementById("quizContainer").style.display = "none";
+        }
+
+        // Função para reiniciar o quiz
+        function reiniciarQuiz() {
+            indiceAtual = 0;
+            respostasUsuario.length = 0;
+            gerarPergunta(indiceAtual);
+            document.getElementById("quizContainer").style.display = "block";
+            document.getElementById("finalMessage").style.display = "none";
+        }
+
+        // Inicializa o quiz
+        gerarPergunta(indiceAtual);
+    </script>
+</body>
+</html>

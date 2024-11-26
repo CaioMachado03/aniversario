@@ -1,0 +1,182 @@
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Roboto', Arial, sans-serif;
+    line-height: 1.6;
+    background: #f4f4f9; /* Fundo suave para não sobrecarregar */
+    color: #333;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    justify-content: center;
+}
+
+/* Estilização do título */
+h1 {
+    font-size: 28px;
+    text-align: center;
+    margin-bottom: 30px;
+    color: #333;
+    font-weight: bold;
+}
+
+/* Estilo do formulário */
+form {
+    background: #ffffff;
+    border: 1px solid #ccc;
+    border-radius: 12px;
+    padding: 25px;
+    width: 100%;
+    max-width: 600px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease;
+}
+
+form:hover {
+    transform: translateY(-3px);
+}
+
+/* Perguntas */
+form p {
+    margin-bottom: 20px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+    text-align: center;
+}
+
+/* Labels e inputs */
+label {
+    display: block; /* Para que ocupe toda a largura */
+    padding: 15px;
+    margin-bottom: 15px;
+    background-color: #f5f5f5;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 16px;
+    text-align: left;
+    cursor: pointer;
+    transition: background 0.3s ease, box-shadow 0.3s ease;
+}
+
+label:hover {
+    background: #e0e0e0;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Botões */
+button {
+    background: #4CAF50; /* Cor suave de verde */
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 18px;
+    margin-top: 20px;
+    font-weight: bold;
+    transition: background 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+button:hover {
+    background: #388e3c;
+    transform: translateY(-2px);
+}
+
+/* Resultado */
+.result {
+    margin-top: 25px;
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    color: #4CAF50;
+    display: none;
+}
+
+/* Mensagem de Vale Monster */
+#finalMessage {
+    background: #81C784; /* Verde mais suave para o final */
+    padding: 20px;
+    border-radius: 12px;
+    text-align: center;
+    color: white;
+    font-size: 22px;
+    font-weight: bold;
+    display: none;
+}
+
+#finalMessage h2 {
+    margin-bottom: 15px;
+}
+
+/* Botão "Tentar novamente" */
+#tryAgain {
+    display: none;
+    margin-top: 20px;
+    text-align: center;
+}
+
+#tryAgain button {
+    background: #d32f2f;
+    color: white;
+    padding: 12px 25px;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    border: none;
+    transition: background 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+#tryAgain button:hover {
+    background: #b71c1c;
+    transform: translateY(-2px);
+}
+
+/* Animação para o texto de aniversário */
+@keyframes balloonEffect {
+    0% {
+        transform: scale(0);
+        opacity: 0;
+    }
+    50% {
+        transform: scale(1.1);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    body {
+        padding: 10px;
+    }
+
+    form {
+        padding: 20px;
+    }
+
+    button {
+        width: 100%;
+    }
+
+    h1 {
+        font-size: 24px;
+    }
+}
+
+/* Efeito de balão para animação */
+#finalMessage {
+    animation: balloonEffect 0.5s ease-in-out;
+}
